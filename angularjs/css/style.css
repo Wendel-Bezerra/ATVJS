@@ -1,0 +1,285 @@
+/* ===== Base ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+  background: #f2f2f2;
+}
+
+header {
+  padding: 16px;
+  color: #fff;
+  background: #2c5aa0;
+  text-align: center;
+}
+
+header h1,
+header p {
+  margin: 4px 0;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+button {
+  padding: 8px 12px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input[type="text"] {
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* ===== Layout responsivo: 1 coluna (celular), 2 (tablet), 3 (desktop) ===== */
+.grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.cartao {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+}
+
+@media (min-width: 600px) {
+  .grade {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .largo {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 992px) {
+  .grade {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* ===== Produtos ===== */
+.barra-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.barra-filtros input {
+  flex: 1 1 200px;
+}
+
+.produtos {
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.produtos li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.produtos small {
+  color: #777;
+}
+
+/* ===== Paginação ===== */
+.paginacao {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+.paginacao .ativa {
+  border-color: #2c5aa0;
+  color: #fff;
+  background: #2c5aa0;
+}
+
+/* ===== Menu suspenso ===== */
+.suspenso {
+  position: relative;
+  display: inline-block;
+}
+
+.suspenso-lista {
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  min-width: 100%;
+  margin: 4px 0 0;
+  padding: 4px 0;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: #fff;
+  list-style: none;
+}
+
+.suspenso-lista button {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.suspenso-lista button:hover {
+  background: #eee;
+}
+
+/* ===== Abas ===== */
+.abas-titulos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-bottom: 2px solid #2c5aa0;
+}
+
+.abas-titulos button {
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.abas-titulos .ativa {
+  color: #fff;
+  background: #2c5aa0;
+}
+
+/* ===== Barra de progresso ===== */
+.progresso {
+  position: relative;
+  height: 24px;
+  border-radius: 4px;
+  background: #ddd;
+  overflow: hidden;
+}
+
+.progresso-preenchimento {
+  height: 100%;
+  background: #3a9d5d;
+  transition: width 0.3s;
+}
+
+.progresso-texto {
+  position: absolute;
+  inset: 0;
+  font-size: 13px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.controle {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.controle input {
+  display: block;
+  width: 100%;
+}
+
+/* ===== Acordeão ===== */
+.acordeao-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.acordeao-titulo {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  text-align: left;
+  font-weight: bold;
+}
+
+.acordeao-corpo {
+  max-height: 0;
+  padding: 0 12px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.acordeao-item.aberto .acordeao-corpo {
+  max-height: 200px;
+}
+
+/* ===== Toasts ===== */
+.toasts {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: #fff;
+  background: #2c5aa0;
+  pointer-events: auto;
+}
+
+.toast.sucesso {
+  background: #2e7d4a;
+}
+
+.toast.erro {
+  background: #b93a32;
+}
+
+.toast button {
+  padding: 0 4px;
+  border: 0;
+  color: #fff;
+  background: none;
+  font-size: 18px;
+}

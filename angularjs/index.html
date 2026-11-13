@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atividade AngularJS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-controller="MainController">
+
+  <header>
+    <h1>Loja Lorem</h1>
+    <p>Atividade AngularJS — componentes como diretivas</p>
+  </header>
+
+  <main class="grade">
+
+    <!-- Menu suspenso + Paginação -->
+    <section class="cartao largo">
+      <h2>Produtos</h2>
+      <div class="barra-filtros">
+        <input type="text" placeholder="Buscar produto..." ng-model="busca" ng-change="aoBuscar()">
+        <dropdown rotulo="Categoria: {{ categoria }}" opcoes="opcoesCategoria"
+                  ao-selecionar="aoSelecionarCategoria(opcao)"></dropdown>
+      </div>
+
+      <ul class="produtos">
+        <li ng-repeat="produto in produtosVisiveis">
+          <strong>{{ produto.nome }}</strong>
+          <small>{{ produto.categoria | uppercase }}</small>
+          <span>{{ produto.preco | moeda }}</span>
+        </li>
+        <li ng-if="produtosVisiveis.length === 0">Nenhum produto encontrado.</li>
+      </ul>
+
+      <pagination total="totalPaginas" atual="paginaAtual" ao-mudar="mudarPagina(pagina)"></pagination>
+    </section>
+
+    <!-- Abas -->
+    <section class="cartao">
+      <h2>Detalhes do produto</h2>
+      <tabs abas="abasProduto"></tabs>
+    </section>
+
+    <!-- Barra de progresso -->
+    <section class="cartao">
+      <h2>Envio de arquivo</h2>
+      <progress-bar valor="progresso"></progress-bar>
+      <div class="botoes">
+        <button type="button" ng-click="iniciarEnvio()" ng-disabled="enviando">Enviar arquivo</button>
+        <button type="button" ng-click="cancelarEnvio()" ng-disabled="!enviando">Cancelar</button>
+      </div>
+      <label class="controle">
+        Ajuste manual: {{ progresso | porcentagem }}
+        <input type="range" min="0" max="100" ng-model="progresso" ng-disabled="enviando">
+      </label>
+    </section>
+
+    <!-- Acordeão -->
+    <section class="cartao">
+      <h2>Perguntas frequentes</h2>
+      <accordion itens="perguntas"></accordion>
+    </section>
+
+    <!-- Toasts -->
+    <section class="cartao">
+      <h2>Notificações</h2>
+      <div class="botoes">
+        <button type="button" ng-click="notificar('sucesso', 'Operação realizada com sucesso!')">Sucesso</button>
+        <button type="button" ng-click="notificar('erro', 'Erro ao salvar os dados.')">Erro</button>
+        <button type="button" ng-click="notificar('info', 'Você tem uma nova mensagem.')">Informação</button>
+      </div>
+    </section>
+
+  </main>
+
+  <toast-container></toast-container>
+
+  <script src="lib/angular.min.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives/accordion.js"></script>
+  <script src="js/directives/pagination.js"></script>
+  <script src="js/directives/progressBar.js"></script>
+  <script src="js/directives/tabs.js"></script>
+  <script src="js/directives/dropdown.js"></script>
+  <script src="js/directives/toast.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
